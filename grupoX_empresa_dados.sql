@@ -14,6 +14,47 @@ VALUES
 
 SELECT * FROM DEPARTAMENTO 
 
+INSERT INTO LOCALIZACOES_DEP 
+    (Dnumero, Dlocal)
+VALUES
+    (1, 'São Paulo'),
+    (4, 'Mauá'),
+    (5, 'Santo André'),
+    (5, 'Itu'),
+    (5, 'São Paulo');
+
+SELECT * FROM LOCALIZACOES_DEP
+
+INSERT INTO PROJETO 
+    (Projnome, Projnumero, Projlocal, Dnum)
+VALUES
+    ('ProdutoX', 1, 'Santo André', 5),
+    ('ProdutoY', 2, 'Itu', 5),
+    ('ProdutoZ', 3, 'São Paulo', 5),
+    ('Informatização', 10, 'Mauá', 4),
+    ('Reorganização', 20, 'São Paulo', 1),
+    ('Novosbeneficios', 30, 'Mauá', 4);
+
+SELECT * FROM PROJETO
+
+INSERT INTO TRABALHA_EM 
+    (Fcpf, Pnr, Horas)
+VALUES
+    ('12345678966', 1, '32,5'),
+    ('12345678966', 2, '7,5'),
+    ('66688444476', 3, '40,0');
+
+SELECT * FROM TRABALHA_EM
+
+INSERT INTO DEPENDENTE 
+    (Fcpf, Nome_dependente, Sexo, Datanasc, Parentesco)
+VALUES
+    ('33344555587', 'Alicia', 'F', '05-04-1966', 'Filha'),
+    ('33344555587', 'Tiago', 'M', '25-10-1983', 'Filho'),
+    ('33344555587', 'Janaina', 'F', '03-05-1958', 'Esposa');
+
+SELECT * FROM DEPENDENTE
+
 
 DROP TABLE FUNCIONARIO, DEPARTAMENTO
 -- INSERT INTO FUNCIONARIO 
