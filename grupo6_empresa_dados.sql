@@ -90,6 +90,33 @@ WHERE D.Dnome = "Pesquisa"
 
 SELECT DISTINCT COUNT(*) Salario FROM FUNCIONARIO
 
+SELECT * FROM PROJETO P JOIN DEPARTAMENTO D ON (P.Dnum = D.Dnumero) 
+WHERE D.Dnome like '%Pesquisa' ORDER BY P.Projnome DESC
+
+SELECT D.Dnome, D.Cpf_gerente FROM DEPARTAMENTO D JOIN LOCALIZACOES_DEP L 
+    ON(D.Dnumero = L.Dnumero) WHERE L.Dlocal = 'Santo André' 
+
+SELECT F2.Pnome as NomeFuncionario, F2.Unome as SobrenomeFuncionario, F1.Pnome as NomeSupervisor, F1.Unome as SobrenomeSupervisor 
+FROM FUNCIONARIO F1 JOIN FUNCIONARIO F2 ON (F2.Cpf_supervisor = F1.Cpf)
+
+SELECT Pnome as NomeFuncionario FROM FUNCIONARIO WHERE Cpf_supervisor IS NULL
+
+SELECT DISTINCT COUNT(Nome_dependente) as qtd_dependente, Fcpf, F.Pnome
+FROM FUNCIONARIO F JOIN DEPENDENTE D ON(F.CPF = D.Fcpf) 
+GROUP BY Fcpf having qtd_dependente > 2
+
+SELECT D.Dnumero as "Num_Departamento", count(f.Dnr) as "Num_de_Funcionarios", avg(f.Salario) as "Salario_Medio"
+FROM FUNCIONARIO F INNER JOIN DEPARTAMENTO D ON(f.Dnr = D.Dnumero) 
+GROUP BY D.Dnumero
+
+CREATE VIEW SALARIOS_DEPARTAMENTOS AS (
+    SELECT D.Dnumero as "Num_Departamento", count(f.Dnr) as "Num_de_Funcionarios", avg(f.Salario) as "Salario_Medio"
+    FROM FUNCIONARIO F INNER JOIN DEPARTAMENTO D ON(f.Dnr = D.Dnumero) 
+    GROUP BY D.Dnumero
+)
+SELECT * FROM SALARIOS_DEPARTAMENTOS WHERE Salario_Medio > 32000
+
+
 /*DROP TABLE FUNCIONARIO, DEPARTAMENTO, LOCALIZACOES_DEP, PROJETO, TRABALHA_EM, DEPENDENTE
 DROP TABLE LOCALIZACOES_DEP, PROJETO
 DROP TABLE TRABALHA_EM, DEPENDENTE*/
